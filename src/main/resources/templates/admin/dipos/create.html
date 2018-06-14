@@ -1,0 +1,113 @@
+<%@include file="../../admin_shared/header.jsp" %>
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+<!-- require bootstrap version 4
+ Modal 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Register Your Dipo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-6">
+        <div class="form-area">  
+            <form role="form" method="post" name ="dipoDTO"  action="${SITE_URL}/dipos/save">
+                <br style="clear:both">
+                <h3 style="margin-bottom: 25px;"> Register Dipo</h3>
+
+                <div class="form-group">
+
+                    <label>DipoName</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label>address</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="address" required="required"/>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>ContactNumber</label>
+                        <input type="text" class="form-control" id="contact" name="contactNumber" placeholder="contactNumber" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>PanNumber</label>
+                        <input type="text" class="form-control" id="pan" name="panNumber" placeholder=" pannumber" required>
+                    </div>
+                </div>
+
+
+                <div>
+                    <input  name="id" value="0"/>
+                </div>
+                <button type="submit" name="submit" value="save " class="btn btn-success">save</button>
+
+                <button type="button" id="submit" name="submit" class="btn btn-primary ">save & continue </button>
+                <a href="${SITE_URL}/dipos" type="button" class="btn btn-danger" name="back" class="btn btn-default ">Back</a>
+
+            </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<div class="container">
+    <div class="col-md-6">
+        <div class="form-area">  
+            <form role="form" method="post" name ="dipoDTO"  action="${SITE_URL}/dipos/save">
+                <br style="clear:both">
+                <h3 style="margin-bottom: 25px;"> Register Dipo</h3>
+
+                <div class="form-group">
+
+                    <label>DipoName</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label>address</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="address" required="required"/>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>ContactNumber</label>
+                        <input type="text" class="form-control" id="contact" name="contactNumber" placeholder="contactNumber" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>PanNumber</label>
+                        <input type="text" class="form-control" id="pan" name="panNumber" placeholder=" pannumber" required>
+                    </div>
+                </div>
+
+
+                <div>
+                    <input  name="id" value="0"/>
+                </div>
+                <button type="submit" name="submit" value="save " class="btn btn-success">save</button>
+
+                <button type="button" id="submit" name="submit" class="btn btn-primary ">save & continue </button>
+                <a href="${SITE_URL}/dipos" type="button" class="btn btn-danger" name="back" class="btn btn-default ">Back</a>
+
+            </form>
+        </div>
+    </div>
+                <%@include file="../../admin_shared/footer.jsp" %>
