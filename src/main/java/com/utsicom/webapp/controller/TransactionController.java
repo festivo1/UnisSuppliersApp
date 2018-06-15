@@ -6,11 +6,13 @@
 package com.utsicom.webapp.controller;
 
 import com.utsicom.webapp.dto.TransactionDTO;
+import com.utsicom.webapp.model.AmountDeposited;
 import com.utsicom.webapp.model.Dipo;
 import com.utsicom.webapp.model.Item;
 import com.utsicom.webapp.model.Supplier;
 import com.utsicom.webapp.model.Transaction;
 import com.utsicom.webapp.repository.DipoRepository;
+import com.utsicom.webapp.service.AmountDepositedService;
 import com.utsicom.webapp.service.DipoService;
 import com.utsicom.webapp.service.ItemService;
 import com.utsicom.webapp.service.SupplierService;
@@ -32,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author utsi
  */
 @Controller
-@RequestMapping("/transaction")
+@RequestMapping("admin/transaction")
 public class TransactionController {
 
     @Autowired
@@ -45,6 +47,8 @@ public class TransactionController {
     DipoService dipoService;
     @Autowired
     DipoRepository dipoRepo;
+    @Autowired
+    AmountDepositedService amountDepositedService;
 //    @Autowired
 //    ReportDAO reportDAO;
 
@@ -66,9 +70,13 @@ public class TransactionController {
         transaction.setSupplier(new Supplier(transactionDTO.getSid()));
         transaction.setDipo(new Dipo(transactionDTO.getDid()));
         transaction.setItem(new Item(transactionDTO.getIid()));
-        transaction.setTransactedNumber(transactionDTO.getTransactedNumber());
+        int num = transactionDTO.getTransactedNumber();
+        transaction.setTransactedNumber(transactionDTO.getTransactedNumber());//refilledNumber
+        int soldNumber = transactionDTO.getSoldNumber();
         transaction.setSoldNumber(transactionDTO.getSoldNumber());
+        int refilledRate = transactionDTO.getRefilledRate();
         transaction.setRefilledRate(transactionDTO.getRefilledRate());
+        int emptyRate = transactionDTO.getEmptyRate();
         transaction.setEmptyRate(transactionDTO.getEmptyRate());
 //        transaction.setTransactedAmount(transactionDTO.getItemReceived());
 //        transaction.setTransactedNumber(transactionDTO.getItemRefilled());
@@ -76,10 +84,16 @@ public class TransactionController {
         //System.out.println((transactionDTO.getTransactedAmount()));
 //        ModelMapper mapper= new ModelMapper();
 //        transaction = mapper.map(transactionDTO, Transaction.class);
-
+        Integer value = num * refilledRate + soldNumber * emptyRate;
+        AmountDeposited amt = new AmountDeposited();
+        amt.setDipo(new Dipo(transactionDTO.getDid()));
+         amt.setDipositedAmount(0);
+        amt.setDecrementedAmount(value);
+       
+        amountDepositedService.saveOrUpdate(amt);
         transactionService.saveOrUpdate(transaction);
 
-        return "redirect:/dipos";
+        return "redirect:/admin";
 
     }
 

@@ -89,7 +89,7 @@ public class LoginController {
         user.setUsername(user.getUsername());
         //user.setPhoto(user.getPhoto());
         Collection<Role> roles=new ArrayList<>();
-        Role r= new Role("USER_ROLE");
+        Role r= new Role("ROLE_USER");
         roles.add(r);
          user.setRoles((roles));
          
@@ -100,5 +100,7 @@ public class LoginController {
         //return "redirect:/login";
         return "dipoRegistration";
     }
-
+    
+    
+    
 }

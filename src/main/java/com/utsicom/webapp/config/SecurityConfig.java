@@ -19,32 +19,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-               http
-                        .authorizeRequests()
-                        .antMatchers(
-                                
-                                "/registration**",
-                                "/js/**",
-                                "/css/**",
-                                "/img/**",
-                                "/dipos**",
-                                "/transaction**",
-                                "/webjars/**",
-                                "/**").permitAll()
-                        .anyRequest().authenticated()
-                       .and()
-        ////with role
-        //                                                   1
-//        http
-//                .authorizeRequests()             
-//                .antMatchers("/resources/**", "/signup", "/about").permitAll()
-//                .antMatchers("/admin/**").hasRole("ADMIN_ROLE")
-//                .antMatchers("/db/**").access("hasRole('ADMIN_ROLE') and hasRole('DBA')")
-//                .anyRequest().authenticated()
-//                .and()
+        http
+                .authorizeRequests()
+                //.antMatchers("/admin").hasRole("USER")//if hasRole ROLE_ is 
+                //automatically inserted
+                //.antMatchers("/admin").hasAuthority("ADMIN_ROLE") 
+                //.antMatchers("/db/**").access("hasAuthority('ADMIN_ROLE') and hasAuthority('DBA')")
+                .antMatchers("/admin/**").access("hasAuthority('ROLE_ADMIN')") 
+                .antMatchers("/dipos/**").access("hasAuthority('ROLE_USER')")
+                .antMatchers(
+                        "/registration**",
+                        "/js/**",
+                        "/css/**",
+                        "/img/**",
+                        "/webjars/**"
+                ).permitAll()
+                .anyRequest().authenticated()
+                .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/dipos")
+                .defaultSuccessUrl("/default")
                 .permitAll()
                 .and()
                 .logout()
@@ -53,6 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
+        
+        
     }
 
     @Bean

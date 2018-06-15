@@ -37,6 +37,29 @@ public class CustomUserServiceImpl extends GenericServiceImpl<User>implements Us
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+     @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getEmail(),
+                user.getPassword(),
+                mapRolesToAuthorities(user.getRoles()));
+    }
+
+    public Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
+    }
+//      @Override
+//  public Collection<? extends GrantedAuthority> getAuthorities() {
+//    Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+//    user.getRoles().stream().forEach(authorities::add);
+//    return authorities;
+//  }
+
 //        User user = new User();
 //        user.setFirstName(registration.getFirstName());
 //        user.setLastName(registration.getLastName());
@@ -88,21 +111,6 @@ public class CustomUserServiceImpl extends GenericServiceImpl<User>implements Us
     
     
     
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = findByEmail(email);
-        if (user == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
-    }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
-    }
+   
 
 }

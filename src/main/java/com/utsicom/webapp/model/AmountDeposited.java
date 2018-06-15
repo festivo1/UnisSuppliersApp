@@ -38,15 +38,21 @@ public class AmountDeposited implements Serializable {
     private Integer id;
     @Column(name = "diposited_amount")
     private Integer dipositedAmount;
+    @Column(name = "decremented_amount")
+    private Integer decrementedAmount;
+    
     @JoinColumn(name = "dipo_id", referencedColumnName = "id")
     @ManyToOne
     private Dipo dipo;
-   
+
     public AmountDeposited() {
     }
 
-    public AmountDeposited(Integer id) {
+    public AmountDeposited(Integer id, Integer dipositedAmount, Integer decrementedAmount, Dipo dipo) {
         this.id = id;
+        this.dipositedAmount = dipositedAmount;
+        this.decrementedAmount = decrementedAmount;
+        this.dipo = dipo;
     }
 
     public Integer getId() {
@@ -65,6 +71,14 @@ public class AmountDeposited implements Serializable {
         this.dipositedAmount = dipositedAmount;
     }
 
+    public Integer getDecrementedAmount() {
+        return decrementedAmount;
+    }
+
+    public void setDecrementedAmount(Integer decrementedAmount) {
+        this.decrementedAmount = decrementedAmount;
+    }
+
     public Dipo getDipo() {
         return dipo;
     }
@@ -72,6 +86,8 @@ public class AmountDeposited implements Serializable {
     public void setDipo(Dipo dipo) {
         this.dipo = dipo;
     }
+
+    
 
     
     

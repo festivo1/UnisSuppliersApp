@@ -10,15 +10,16 @@ package com.utsicom.webapp.dto;
  * @author utsi
  */
 public class AmountDepositedDTO {
-    private int id, did, amountDiposited ;
+    private int id, did, amountDiposited, decrementedAmount ;
 
     public AmountDepositedDTO() {
     }
 
-    public AmountDepositedDTO(int id, int did, int amountDiposited) {
+    public AmountDepositedDTO(int id, int did, int amountDiposited, int decrementedAmount) {
         this.id = id;
         this.did = did;
         this.amountDiposited = amountDiposited;
+        this.decrementedAmount = decrementedAmount;
     }
 
     public int getId() {
@@ -44,6 +45,14 @@ public class AmountDepositedDTO {
     public void setAmountDiposited(int amountDiposited) {
         this.amountDiposited = amountDiposited;
     }
-    
+
+    public int getDecrementedAmount() {
+        return decrementedAmount;
+    }
+
+    public void setDecrementedAmount(int decrementedAmount) {
+        this.decrementedAmount = decrementedAmount;
+    }
+
     
 }

@@ -49,19 +49,19 @@
                                     <td th:text="${dipo.panNumber}"></td>
                                     <td th:text="${dipo.addedDate}"></td>
                                     <td>
-                                        <a th:href="@{/dipos/edit/__${dipo.id}__}" class="btn btn-default ebtn"><span class="glyphicon glyphicon-pencil"> </span>    </a>
+                                        <a th:href="@{/admin/dipos/edit/__${dipo.id}__}" class="btn btn-default ebtn"><span class="glyphicon glyphicon-pencil"> </span>    </a>
 
-                                        <a th:href="@{/dipos/delete/__${dipo.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-trash"> </span>  </a>
+                                        <a th:href="@{/admin/dipos/delete/__${dipo.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-trash"> </span>  </a>
 
                                     </td>
                                     <td> 
-                                        <a th:href="@{/transaction/create/__${dipo.id}__}" type= "button" class="btn btn-sm btn-primary sTranBtn ">
+                                        <a th:href="@{/admin/transaction/create/__${dipo.id}__}" type= "button" class="btn btn-sm btn-primary sTranBtn ">
                                             <span class="glyphicon glyphicon-plus"></span>
                                         </a>
                                         <!--                                        <a th:href="@{admin/transaction/edit/__${dipo.id}__}" class="btn btn-default eTranBtn">
                                                                                     <span class="glyphicon glyphicon-pencil"> </span> 
                                                                                 </a>-->
-                                    <td> <a th:href="@{/transaction/report/__${dipo.id}__}" type= "button" class="btn btn-default showReportBtn" target="_blank">show</a>
+                                    <td> <a th:href="@{/admin/transaction/report/__${dipo.id}__}" type= "button" class="btn btn-default showReportBtn" target="_blank">show</a>
                                 </tr>
 
                             </tbody>
@@ -69,7 +69,7 @@
                         <hr/>
                         <ul class="nav nav-pills">
                             <li class="nav-item" th:each="i: ${#numbers.sequence(0,dipos.totalPages-1)}">
-                                <a th:href="@{/dipos/(pages=${i})}"th:text="${i}" class="nav-link"
+                                <a th:href="@{/admin/dipos/(pages=${i})}"th:text="${i}" class="nav-link"
                                    th:classappend="${currentPage}==${i}?'active':''"></a>
                             </li>
                         </ul>
@@ -85,7 +85,7 @@
 
         <!-- create- Dipo->
         -->        <div class="myDipoCreateForm">
-            <form th:action="@{/dipos/save}" name="dipoDTO" method="post">
+            <form th:action="@{/admin/dipos/save}" name="dipoDTO" method="post">
                 <div class="modal fade" id="dipoCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -133,7 +133,7 @@
         
         <!--edit Dipo-->
         <div class="myDipoEditForm">
-            <form th:action="@{/dipos/save}" name="dipo" method="post">
+            <form th:action="@{/admin/dipos/save}" name="dipo" method="post">
                 <div class="modal fade" id="dipoEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -203,7 +203,7 @@
 
         <!--create transactions-->
         <div class="myTransactionCreateForm">
-            <form th:action="@{/transaction/save}" name="transactionDTO" method="post">
+            <form th:action="@{/admin/transaction/save}" name="transactionDTO" method="post">
                 <div class="modal fade" id="transactionCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -232,8 +232,8 @@
                                                                     </select>
                                                                 </div>-->
                                 <div class="form-group">
-                                    <label for="did" class="col-form-label"></label>
-                                    <input type="hidden" class="form-control" id="did" name="did" value="" required/>
+                                    <label for="did" class="col-form-label">DipoID</label>
+                                    <input type="hidden" class="form-control" id="did" name="did" value="" />
 
                                 </div>
                                 <div class="form-group">
@@ -254,23 +254,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="soldNumber" class="col-form-label">soldNumber</label>
-                                    <input type="number" class="form-control" id="soldNumber" name="soldNumber" value="0"/>
+                                    <input type="number" class="form-control" id="soldNumber" name="soldNumber" />
 
                                 </div>
                                 <div class="form-group">
                                     <label for="refilledRate" class="col-form-label">RefilledRate</label>
-                                    <input type="number" class="form-control" id="refilledRate" name="refilledRate" value="" required />
+                                    <input type="number" class="form-control" id="refilledRate" name="refilledRate" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="emptyRate" class="col-form-label">EmptyRate</label>
-                                    <input type="number" class="form-control" id="emptyRate" name="emptyRate" value="0"/>
+                                    <input type="number" class="form-control" id="emptyRate" name="emptyRate"  />
 
                                 </div>
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="save"/>
+                                <input onclick="soldNumber()" type="submit" class="btn btn-primary" value="save"/>
                             </div>
                         </div>
                     </div>

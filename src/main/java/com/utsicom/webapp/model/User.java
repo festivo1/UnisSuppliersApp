@@ -6,8 +6,10 @@
 package com.utsicom.webapp.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -75,7 +77,7 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
-
+    //private List<Role> roles = new ArrayList<>();
     public User() {
     }
 
