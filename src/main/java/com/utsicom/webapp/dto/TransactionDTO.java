@@ -5,6 +5,8 @@
  */
 package com.utsicom.webapp.dto;
 
+
+
 /**
  *
  * @author utsi
@@ -12,11 +14,11 @@ package com.utsicom.webapp.dto;
 public class TransactionDTO {
     private int id, did, sid, iid;
     private int transactedNumber, soldNumber, emptyRate, refilledRate ;
-
+    private String addedDate;
     public TransactionDTO() {
     }
 
-    public TransactionDTO(int id, int did, int sid, int iid, int transactedNumber, int soldNumber, int emptyRate, int refilledRate) {
+    public TransactionDTO(int id, int did, int sid, int iid, int transactedNumber, int soldNumber, int emptyRate, int refilledRate, String addedDate) {
         this.id = id;
         this.did = did;
         this.sid = sid;
@@ -25,6 +27,7 @@ public class TransactionDTO {
         this.soldNumber = soldNumber;
         this.emptyRate = emptyRate;
         this.refilledRate = refilledRate;
+        this.addedDate = addedDate;
     }
 
    
@@ -71,6 +74,14 @@ public class TransactionDTO {
 
     public int getIid() {
         return iid;
+    }
+
+    public String getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(String addedDate) {
+        this.addedDate = addedDate;
     }
 
     public void setIid(int iid) {

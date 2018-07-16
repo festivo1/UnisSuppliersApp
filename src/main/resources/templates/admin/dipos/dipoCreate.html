@@ -1,0 +1,119 @@
+<div class="myDipoCreateForm" th:fragment="dipoCreateForm">
+            <form th:action="@{/admin/dipos/save}" name="dipoDTO" method="post">
+                <div class="modal fade" id="dipoCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><h2>Create Dipo</h2></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="id" class="col-form-label">Id</label>
+                                    <input type="number" class="form-control" id="id" name="id" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="col-form-label">address</label>
+                                    <input type="text" class="form-control" id="address" name="address" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactNumber" class="col-form-label">ContactNo</label>
+                                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="panNumber" class="col-form-label">panNumber</label>
+                                    <input type="text" class="form-control" id="panNumber" name="panNumber" value=""/>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="save"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+<div class="myDipoEditForm" th:fragment="dipoEditForm">
+            <form th:action="@{/admin/dipos/save}" name="dipoDTO" method="post">
+                <div class="modal fade" id="dipoEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><h2>Edit Dipo</h2></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+<!--                                    <label for="id" class="col-form-label">Id</label>-->
+                                    <input type="hidden" class="form-control" id="id" name="id" value=""/>
+                                </div>
+                                <div class="form-group">
+<!--                                    <label for="user_id" class="col-form-label">Id</label>-->
+                                    <input type="hidden" class="form-control" id="userId" name="userId" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="col-form-label">address</label>
+                                    <input type="text" class="form-control" id="address" name="address" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactNumber" class="col-form-label">ContactNo</label>
+                                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="panNumber" class="col-form-label">panNumber</label>
+                                    <input type="text" class="form-control" id="panNumber" name="panNumber" value=""/>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="save"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+<!--dipo del-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="dipoDelete">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">alert</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="alert-danger alert">
+                            Are you sure you want to delete
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="" id='delRef' class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -6,6 +6,7 @@
 package com.utsicom.webapp.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ItemDeposited.findAll", query = "SELECT i FROM ItemDeposited i")
-    })
+})
 public class ItemDeposited implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,8 +38,10 @@ public class ItemDeposited implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "diposited_number")
-    private Integer dipositedNumber;
+    @Column(name = "refilled_number")
+    private Integer refilledNumber;
+    @Column(name = "deposited_number")
+    private Integer depositedNumber;
     @JoinColumn(name = "dipo_id", referencedColumnName = "id")
     @ManyToOne
     private Dipo dipo;
@@ -48,6 +51,8 @@ public class ItemDeposited implements Serializable {
     @JoinColumn(name = "supplier_id", referencedColumnName = "id")
     @ManyToOne
     private Supplier supplier;
+    @Column(name = "added_date")
+    private Date addedDate;
 
     public ItemDeposited() {
     }
@@ -64,16 +69,32 @@ public class ItemDeposited implements Serializable {
         this.id = id;
     }
 
-    public Integer getDipositedNumber() {
-        return dipositedNumber;
+    public Integer getDepositedNumber() {
+        return depositedNumber;
     }
 
-    public void setDipositedNumber(Integer dipositedNumber) {
-        this.dipositedNumber = dipositedNumber;
+    public void setDepositedNumber(Integer depositedNumber) {
+        this.depositedNumber = depositedNumber;
     }
 
     public Dipo getDipo() {
         return dipo;
+    }
+
+    public Integer getRefilledNumber() {
+        return refilledNumber;
+    }
+
+    public void setRefilledNumber(Integer refilledNumber) {
+        this.refilledNumber = refilledNumber;
+    }
+
+    public Date getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(Date addedDate) {
+        this.addedDate = addedDate;
     }
 
     public void setDipo(Dipo dipo) {
@@ -96,6 +117,4 @@ public class ItemDeposited implements Serializable {
         this.supplier = supplier;
     }
 
-    
-    
 }

@@ -24,6 +24,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -78,6 +79,10 @@ public class User implements Serializable {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
     //private List<Role> roles = new ArrayList<>();
+//    @JoinTable(name = "dipos", joinColumns=@JoinColumn(
+//            name="user_id", referencedColumnName = "id"))
+//    @OneToOne
+//    private Dipo dipo;
     public User() {
     }
 
@@ -126,6 +131,14 @@ public class User implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
+//    public Dipo getDipo() {
+//        return dipo;
+//    }
+//
+//    public void setDipo(Dipo dipo) {
+//        this.dipo = dipo;
+//    }
 
     public String getFirstName() {
         return firstName;

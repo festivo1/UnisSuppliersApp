@@ -9,7 +9,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.utsicom.webapp.controller;
+package com.utsicom.webapp.controller.admin;
 
 import com.utsicom.webapp.dto.DipoDTO;
 import com.utsicom.webapp.model.Dipo;
@@ -43,8 +43,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 //@PreAuthorize("hasAuthority('ADMIN_ROLE')")
-@RequestMapping(value = "/admin")
-public class AdminController {
+@RequestMapping(value = "/admin/suppliers")
+public class SupplierController {
 
     @Autowired
     private UserService userService;
@@ -91,13 +91,20 @@ public class AdminController {
 
     @RequestMapping(value = "dipos/save", method = RequestMethod.POST)
     public String save(DipoDTO dipoDTO) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByEmail(auth.getName());
+        System.out.println(userService.findByEmail(auth.getName()));
+        //model.addAttribute("userName", "Welcome " + user.getFirstName());
+        int id = user.getId();
         Dipo dipo = new Dipo();
-        dipo.setId(dipoDTO.getId());
+        //dipo.setId(dipoDTO.getId());
         dipo.setName(dipoDTO.getName());
         dipo.setAddress(dipoDTO.getAddress());
         dipo.setContactNumber(dipoDTO.getContactNumber());
         dipo.setPanNumber(dipoDTO.getPanNumber());
         dipo.setAddedDate(new Date());
+        //if(dipo.getId())
+       // dipo.setUserId(id);
         //dipo.setUser(new User(dipoDTO.getUsername()));
         //User user = new User();
         //user.setUsername(dipoDTO.getUsername());

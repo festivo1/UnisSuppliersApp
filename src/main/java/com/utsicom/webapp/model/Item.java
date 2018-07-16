@@ -53,12 +53,12 @@ public class Item implements Serializable {
     @Column(name = "added_date")
     @Temporal(TemporalType.DATE)
     private Date addedDate;
-    @OneToMany(mappedBy = "item")
-    private List<ItemDeposited> itemDepositedList;
-    @OneToMany(mappedBy = "item")
-//    private List<Transaction> transactionList;
 //    @OneToMany(mappedBy = "item")
-    private List<Leakage> leakageList;
+//    private List<ItemDeposited> itemDepositedList;
+//    @OneToMany(mappedBy = "item")
+////    private List<Transaction> transactionList;
+////    @OneToMany(mappedBy = "item")
+//    private List<Leakage> leakageList;
 
     public Item() {
     }
@@ -107,32 +107,32 @@ public class Item implements Serializable {
         this.addedDate = addedDate;
     }
 
-    @XmlTransient
-    public List<ItemDeposited> getItemDepositedList() {
-        return itemDepositedList;
-    }
-
-    public void setItemDepositedList(List<ItemDeposited> itemDepositedList) {
-        this.itemDepositedList = itemDepositedList;
-    }
-
 //    @XmlTransient
-//    public List<Transaction> getTransactionList() {
-//        return transactionList;
+//    public List<ItemDeposited> getItemDepositedList() {
+//        return itemDepositedList;
 //    }
-
-//    public void setTransactionList(List<Transaction> transactionList) {
-//        this.transactionList = transactionList;
+//
+//    public void setItemDepositedList(List<ItemDeposited> itemDepositedList) {
+//        this.itemDepositedList = itemDepositedList;
 //    }
-
-    @XmlTransient
-    public List<Leakage> getLeakageList() {
-        return leakageList;
-    }
-
-    public void setLeakageList(List<Leakage> leakageList) {
-        this.leakageList = leakageList;
-    }
+//
+////    @XmlTransient
+////    public List<Transaction> getTransactionList() {
+////        return transactionList;
+////    }
+//
+////    public void setTransactionList(List<Transaction> transactionList) {
+////        this.transactionList = transactionList;
+////    }
+//
+//    @XmlTransient
+//    public List<Leakage> getLeakageList() {
+//        return leakageList;
+//    }
+//
+//    public void setLeakageList(List<Leakage> leakageList) {
+//        this.leakageList = leakageList;
+//    }
 
     
 }

@@ -1,0 +1,61 @@
+<div class="myLeakageCreateForm" th:fragment="leakageCreateForm">
+    <form th:action="@{/admin/leakage/save}" name="leakageDTO" method="post" onsubmit="return leakValidationCheck(this);">
+        <div class="modal fade" id="leakageCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+
+                            <!--                                    <h2 id="dipoName" th:text="${dipo!= null ? dipo.name : 'NOT FOUND'}"/>-->
+                            <h1 class="dipoName"/>
+                            My Dipo Name
+                            </h1>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            
+                            <input type="hidden" class="form-control" id="did" name="did"/>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="addedDate" class="col-form-label">Date(yyyy-mm-dd)</label>
+                            <input type="date" class="form-control" id="addedDate" name="addedDate" />
+
+                        </div>
+                        <div class="form-group">
+                            <label for="sid" class="col-form-label">supplier</label>
+                            <select class="form-control" id="sid" name="sid"  required>
+                                <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="iid" class="col-form-label">Items</label>
+                            <select class="form-control" id="iid" name="iid"  required>
+                                <option th:each="item : ${items}" th:value="${item.id}" th:text="${item.name}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="receivedLeakage" class="col-form-label">Leakage received from Dipo </label>
+                            <input type="number" class="form-control" id="receivedLeakage" name="receivedLeakage" />
+                        </div>
+                        <div class="form-group">
+                            <label for="refilledLeakage" class="col-form-label">Leakage Resent to Dipo</label>
+                            <input type="number" class="form-control" id="refilledLeakage" name="returnedLeakage" />
+                        </div>
+                        
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="save"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

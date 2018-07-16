@@ -3,6 +3,7 @@ package com.utsicom.webapp.service.impl;
 
 import com.utsicom.webapp.model.AmountDeposited;
 import com.utsicom.webapp.model.AmountDeposited;
+import com.utsicom.webapp.model.ItemDeposited;
 import com.utsicom.webapp.repository.AmountDepositedRepository;
 import com.utsicom.webapp.service.AmountDepositedService;
 import java.util.List;
@@ -19,20 +20,20 @@ public class AmountDepositedServiceImpl extends GenericServiceImpl<AmountDeposit
    
     @Autowired
     private AmountDepositedRepository amountDepositedDAO;
-    private List<AmountDeposited> amountDepositeds;//used for caching
+    private List<AmountDeposited> amountDeposited;//used for caching
 
     @Override
     public List<AmountDeposited> getAll() {
-        if (amountDepositeds == null) {
-            amountDepositeds = amountDepositedDAO.findAll();
+        if (amountDeposited == null) {
+            amountDeposited = amountDepositedDAO.findAll();
         }
-        return amountDepositeds;
+        return amountDeposited;
     }
 
     @Override
     public void saveOrUpdate(AmountDeposited amountDeposited) {
         amountDepositedDAO.save(amountDeposited);
-        amountDepositeds = null;
+        amountDeposited = null;
     }
 
     @Override
@@ -60,5 +61,10 @@ public class AmountDepositedServiceImpl extends GenericServiceImpl<AmountDeposit
     @Override
     public List<AmountDeposited> getAllById(Iterable<Integer> id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    @Override
+    public List<AmountDeposited> findAllByDipoId(int id){
+       amountDeposited=amountDepositedDAO.findAllByDipoId(id);
+        return amountDeposited;
     }
 }

@@ -10,15 +10,14 @@ package com.utsicom.webapp.dto;
  * @author utsi
  */
 public class DipoDTO {
-    private int id, uid;
+   private int id;
     private String name, address, contactNumber, panNumber;
     
     public DipoDTO() {
     }
 
-    public DipoDTO(int id, int uid, String name, String address, String contactNumber, String panNumber) {
+    public DipoDTO(int id, String name, String address, String contactNumber, String panNumber) {
         this.id = id;
-        this.uid = uid;
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;
@@ -32,15 +31,6 @@ public class DipoDTO {
     public void setId(int id) {
         this.id = id;
     }
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
     public String getName() {
         return name;
     }

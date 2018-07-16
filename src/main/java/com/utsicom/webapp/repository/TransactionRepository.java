@@ -20,6 +20,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
     //@Query("select * from Transaction")
    //List<Transaction> findAllByDipo(1);
     //@Query("select * from Transaction join")
-    @Query("select t from Transaction t where t.dipo.id=:id")
+    @Query("select t from Transaction t where t.dipo.id=:id order by t.addedDate desc")
      List<Transaction> findAllByDipoId(@Param("id")int id);
 }

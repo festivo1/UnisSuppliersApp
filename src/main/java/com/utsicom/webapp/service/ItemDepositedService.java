@@ -6,6 +6,8 @@
 package com.utsicom.webapp.service;
 
 import com.utsicom.webapp.model.ItemDeposited;
+import com.utsicom.webapp.model.Transaction;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 /**
@@ -14,5 +16,5 @@ import org.springframework.stereotype.Repository;
  */
 
 public interface ItemDepositedService extends GenericService<ItemDeposited>{
-    
+     List<ItemDeposited> findAllByDipoId(int id);
 }

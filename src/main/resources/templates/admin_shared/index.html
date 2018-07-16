@@ -13,10 +13,10 @@
                 <div class="row">
                     <div class="panel panel-default filterable">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Dipos</h3>
+                            <h3 class="panel-title">Dipos of UNIS</h3>
                             <div class="pull-right">
-
-                                <a th:href="@{/dipos/create}" type= "button" class="btn btn-xs btn-primary ">
+                                <!--                                                                                                    th:href="@{/dipos/create}"-->
+                                <a  type= "button" class="btn btn-xs btn-primary  sbtn">
                                     <span class="glyphicon glyphicon-plus"/>
                                 </a>
                                 <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
@@ -41,40 +41,242 @@
                             <tbody>
 
 
-                                <tr th:each="dipo: ${dipos}">
-                                    <td th:text="${dipo.id}"></td>
+                                <tr th:each="dipo:${dipos.content}">
+                                    <td th:text="${dipoStat.count}"></td><!--it counts till the end -->
                                     <td th:text="${dipo.name}"></td>
                                     <td th:text="${dipo.address}"></td>
                                     <td th:text="${dipo.contactNumber}"></td>
                                     <td th:text="${dipo.panNumber}"></td>
                                     <td th:text="${dipo.addedDate}"></td>
-                                    <td align="">
-                                        <a href="@{/admin/dipos/edit/${dipo.id}}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"> </span>    </a>
-                                        <a href="@{/admin/dipos/delete}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span>    </a>
+                                    <td>
+                                        <a th:href="@{/admin/dipos/edit/__${dipo.id}__}" class="btn btn-default ebtn"><span class="glyphicon glyphicon-pencil"> </span>    </a>
+
+                                        <a th:href="@{/admin/dipos/delete/__${dipo.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-trash"> </span>  </a>
+
                                     </td>
                                     <td> 
-                                        <a href="@{admin/transactions/create/${dipo.id}}" type= "button" class="btn btn-sm btn-primary ">
+                                        <a th:href="@{/admin/transactions/create/__${dipo.id}__}" type= "button" class="btn btn-sm btn-primary sTranBtn ">
                                             <span class="glyphicon glyphicon-plus"></span>
                                         </a>
-                                        <a href="@{admin/transactions/edit/${dipo.id}" class="btn btn-default">
-                                            <span class="glyphicon glyphicon-pencil"> </span> 
-                                        </a>
-                                    <td> <a href="@{admin/transactions/report/${dipo.id}" class="btn btn-default">show</a>
+                                        <!--                                        <a th:href="@{admin/transaction/edit/__${dipo.id}__}" class="btn btn-default eTranBtn">
+                                                                                    <span class="glyphicon glyphicon-pencil"> </span> 
+                                                                                </a>-->
+                                    <td> <a th:href="@{/admin/transactions/report/__${dipo.id}__}" type= "button" class="btn btn-default showReportBtn" target="_blank">show</a>
                                 </tr>
-                            
+
                             </tbody>
                         </table>
+                        <hr/>
+                        <ul class="nav nav-pills">
+                            <li class="nav-item" th:each="i: ${#numbers.sequence(0,dipos.totalPages-1)}">
+                                <a th:href="@{/admin/dipos/(pages=${i})}"th:text="${i}" class="nav-link"
+                                   th:classappend="${currentPage}==${i}?'active':''"></a>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
-
-
-
             </div>
-
             <footer th:replace="admin_shared/footer::footer"></footer>
+            <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+            <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+        </div>
 
 
-           
+        <!-- create- Dipo->
+        -->        <div class="myDipoCreateForm">
+            <form th:action="@{/admin/dipos/save}" name="dipoDTO" method="post">
+                <div class="modal fade" id="dipoCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><h2>Create Dipo</h2></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="id" class="col-form-label">Id</label>
+                                    <input type="number" class="form-control" id="id" name="id" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="col-form-label">address</label>
+                                    <input type="text" class="form-control" id="address" name="address" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactNumber" class="col-form-label">ContactNo</label>
+                                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="panNumber" class="col-form-label">panNumber</label>
+                                    <input type="text" class="form-control" id="panNumber" name="panNumber" value=""/>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="save"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--
+        
+        <!--edit Dipo-->
+        <div class="myDipoEditForm">
+            <form th:action="@{/admin/dipos/save}" name="dipo" method="post">
+                <div class="modal fade" id="dipoEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><h2>Edit Dipo</h2></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="id" class="col-form-label">Id</label>
+                                    <input type="number" class="form-control" id="id" name="id" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="col-form-label">address</label>
+                                    <input type="text" class="form-control" id="address" name="address" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactNumber" class="col-form-label">ContactNo</label>
+                                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="panNumber" class="col-form-label">panNumber</label>
+                                    <input type="text" class="form-control" id="panNumber" name="panNumber" value=""/>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="save"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--Delete DipoModal-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">alert</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="alert-danger alert">
+                            Are you sure you want to delete
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="" id='delRef' class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--create transactions-->
+        <div class="myTransactionCreateForm">
+            <form th:action="@{/admin/transactions/save}" name="transactionDTO" method="post">
+                <div class="modal fade" id="transactionCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+
+                                    <!--                                    <h2 id="dipoName" th:text="${dipo!= null ? dipo.name : 'NOT FOUND'}"/>-->
+                                    <h1 id="dipoName"/>
+                                    My Dipo Name
+                                    </h1>
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <!--                                <div class="form-group">
+                                                                    <label for="id" class="col-form-label">Id</label>
+                                                                    <input type="number" class="form-control" id="id" name="id" value=""/>
+                                                                </div>-->
+                                <!--                                <div class="form-group">
+                                                                    <label for="did" class="col-form-label">Dipo Name</label>
+                                                                   <select class="form-control" id="did" name="did"  required>
+                                                                        <option th:each="dipo : ${dipos}" th:value="${dipo.id}" th:text="${dipo.name}"></option>
+                                                                    </select>
+                                                                </div>-->
+                                <div class="form-group">
+                                    <label for="did" class="col-form-label">DipoID</label>
+                                    <input type="number" class="form-control" id="did" name="did"  />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="sid" class="col-form-label">supplier</label>
+                                    <select class="form-control" id="sid" name="sid"  required>
+                                        <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="iid" class="col-form-label">Items</label>
+                                    <select class="form-control" id="iid" name="iid"  required>
+                                        <option th:each="item : ${items}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="transactedNumber" class="col-form-label">refilled Number</label>
+                                    <input type="number" class="form-control" id="transactedNumber" name="transactedNumber" value="" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="refilledRate" class="col-form-label">RefilledRate</label>
+                                    <input type="number" class="form-control" id="refilledRate" name="refilledRate" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="soldNumber" class="col-form-label">soldNumber</label>
+                                    <input type="number" class="form-control" id="soldNumber" name="soldNumber" />
+
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="emptyRate" class="col-form-label">FullRate</label>
+                                    <input type="number" class="form-control" id="emptyRate" name="emptyRate"  />
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input onclick="soldNumber()" type="submit" class="btn btn-primary" value="save"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </body>
 </html>

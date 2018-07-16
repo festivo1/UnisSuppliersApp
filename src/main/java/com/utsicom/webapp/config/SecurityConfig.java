@@ -26,19 +26,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/admin").hasAuthority("ADMIN_ROLE") 
                 //.antMatchers("/db/**").access("hasAuthority('ADMIN_ROLE') and hasAuthority('DBA')")
                 .antMatchers("/admin/**").access("hasAuthority('ROLE_ADMIN')") 
-                .antMatchers("/dipos/**").access("hasAuthority('ROLE_USER')")
+                .antMatchers("/user/**").access("hasAuthority('ROLE_USER')")
                 .antMatchers(
                         "/registration**",
                         "/js/**",
                         "/css/**",
                         "/img/**",
-                        "/webjars/**"
+                        "/webjars/**",
+                        "/dipoRegistration**"
+                        
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/default")
+                .defaultSuccessUrl("/default",true)
                 .permitAll()
                 .and()
                 .logout()

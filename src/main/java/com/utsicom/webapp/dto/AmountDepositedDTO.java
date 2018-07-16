@@ -5,22 +5,36 @@
  */
 package com.utsicom.webapp.dto;
 
+import java.util.Date;
+
 /**
  *
  * @author utsi
  */
 public class AmountDepositedDTO {
-    private int id, did, amountDiposited, decrementedAmount ;
-
+    private int id, did, amountDeposited;
+     private int decrementedAmount;
+    private String addedDate;
     public AmountDepositedDTO() {
     }
 
-    public AmountDepositedDTO(int id, int did, int amountDiposited, int decrementedAmount) {
+    public AmountDepositedDTO(int id, int did, int amountDeposited, Integer decrementedAmount, String addedDate) {
         this.id = id;
         this.did = did;
-        this.amountDiposited = amountDiposited;
+        this.amountDeposited = amountDeposited;
+        this.decrementedAmount = decrementedAmount;
+        this.addedDate = addedDate;
+    }
+
+    public Integer getDecrementedAmount() {
+        return decrementedAmount;
+    }
+
+    public void setDecrementedAmount(Integer decrementedAmount) {
         this.decrementedAmount = decrementedAmount;
     }
+
+    
 
     public int getId() {
         return id;
@@ -38,21 +52,22 @@ public class AmountDepositedDTO {
         this.did = did;
     }
 
-    public int getAmountDiposited() {
-        return amountDiposited;
+    public int getAmountDeposited() {
+        return amountDeposited;
     }
 
-    public void setAmountDiposited(int amountDiposited) {
-        this.amountDiposited = amountDiposited;
+    public void setAmountDeposited(int amountDeposited) {
+        this.amountDeposited = amountDeposited;
     }
 
-    public int getDecrementedAmount() {
-        return decrementedAmount;
+    public String getAddedDate() {
+        return addedDate;
     }
 
-    public void setDecrementedAmount(int decrementedAmount) {
-        this.decrementedAmount = decrementedAmount;
+    public void setAddedDate(String addedDate) {
+        this.addedDate = addedDate;
     }
+    
 
     
 }

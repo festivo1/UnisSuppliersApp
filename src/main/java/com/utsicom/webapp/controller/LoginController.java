@@ -5,12 +5,10 @@
  */
 package com.utsicom.webapp.controller;
 
-import com.utsicom.webapp.dto.UserDTO;
+import com.utsicom.webapp.model.Dipo;
 import com.utsicom.webapp.model.Role;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,23 +16,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.utsicom.webapp.model.User;
-import com.utsicom.webapp.repository.UserRepository;
+import com.utsicom.webapp.service.DipoService;
 import com.utsicom.webapp.service.UserService;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.UUID;
-import static javafx.scene.input.KeyCode.D;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private DipoService dipoService;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -91,14 +87,23 @@ public class LoginController {
         Collection<Role> roles=new ArrayList<>();
         Role r= new Role("ROLE_USER");
         roles.add(r);
-         user.setRoles((roles));
-         
+         user.setRoles(roles);
          userService.saveOrUpdate(user);
+         //user.setDipo(new Dipo(user.getId()));
+         Dipo dipo= new Dipo();
+         int id=(user.getId());
+            System.out.println(id);
+         dipo.setId(id);
+         dipo.setUser(new User(user.getId()));
+         dipoService.saveOrUpdate(dipo);
+         
+         
+         
             System.out.println("user save huna aairacha ");
 
         }
         //return "redirect:/login";
-        return "dipoRegistration";
+       return "redirect:/login";
     }
     
     

@@ -6,6 +6,7 @@
 package com.utsicom.webapp.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,11 +37,12 @@ public class AmountDeposited implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "diposited_amount")
-    private Integer dipositedAmount;
+    @Column(name = "deposited_amount")
+    private Integer depositedAmount;
     @Column(name = "decremented_amount")
     private Integer decrementedAmount;
-    
+    @Column (name="added_date")
+    private Date addedDate;
     @JoinColumn(name = "dipo_id", referencedColumnName = "id")
     @ManyToOne
     private Dipo dipo;
@@ -48,12 +50,15 @@ public class AmountDeposited implements Serializable {
     public AmountDeposited() {
     }
 
-    public AmountDeposited(Integer id, Integer dipositedAmount, Integer decrementedAmount, Dipo dipo) {
+    public AmountDeposited(Integer id, Integer depositedAmount, Integer decrementedAmount, Date addedDate, Dipo dipo) {
         this.id = id;
-        this.dipositedAmount = dipositedAmount;
+        this.depositedAmount = depositedAmount;
         this.decrementedAmount = decrementedAmount;
+        this.addedDate = addedDate;
         this.dipo = dipo;
     }
+
+   
 
     public Integer getId() {
         return id;
@@ -63,12 +68,12 @@ public class AmountDeposited implements Serializable {
         this.id = id;
     }
 
-    public Integer getDipositedAmount() {
-        return dipositedAmount;
+    public Integer getDepositedAmount() {
+        return depositedAmount;
     }
 
-    public void setDipositedAmount(Integer dipositedAmount) {
-        this.dipositedAmount = dipositedAmount;
+    public void setDepositedAmount(Integer depositedAmount) {
+        this.depositedAmount = depositedAmount;
     }
 
     public Integer getDecrementedAmount() {
@@ -86,6 +91,15 @@ public class AmountDeposited implements Serializable {
     public void setDipo(Dipo dipo) {
         this.dipo = dipo;
     }
+
+    public Date getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(Date addedDate) {
+        this.addedDate = addedDate;
+    }
+    
 
     
 

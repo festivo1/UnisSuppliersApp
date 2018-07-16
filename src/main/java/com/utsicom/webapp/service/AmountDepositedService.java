@@ -6,6 +6,7 @@
 package com.utsicom.webapp.service;
 
 import com.utsicom.webapp.model.AmountDeposited;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,5 @@ import com.utsicom.webapp.model.AmountDeposited;
  */
 
 public interface AmountDepositedService extends GenericService<AmountDeposited>{
-    
+     List<AmountDeposited> findAllByDipoId(int id);
 }

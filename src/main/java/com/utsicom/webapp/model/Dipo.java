@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,8 +40,6 @@ public class Dipo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
     @Size(max = 50)
@@ -55,11 +54,14 @@ public class Dipo implements Serializable {
     @Size(max = 20)
     @Column(name = "pan_number")
     private String panNumber;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne
+    private User user;
 //    @Lob
 //    @Column(name = "citizenship_pcy", nullable = true)
 //    private byte[] citizenshipPcy;
 //    
-    @Column(name = "added_date", insertable = false)
+    @Column(name = "added_date", insertable = true)
     private Date addedDate;
 //    @Lob
 //    @Column(name = "pan_registration_pcy", nullable = true)
@@ -134,6 +136,7 @@ public class Dipo implements Serializable {
     public void setPanNumber(String panNumber) {
         this.panNumber = panNumber;
     }
+    
 
 //    public byte[] getCitizenshipPcy() {
 //        return citizenshipPcy;
@@ -204,4 +207,20 @@ public class Dipo implements Serializable {
 //    }
 //
 //    
+
+//    public int getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(int userId) {
+//        this.userId = userId;
+//    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -5,25 +5,33 @@
  */
 package com.utsicom.webapp.dto;
 
+import java.util.Date;
+
 /**
  *
  * @author utsi
  */
 public class LeakageDTO {
-    private int id, did, sid, iid, received_leakage, returned_leakage;
+    private int id, did, sid, iid, receivedLeakage, returnedLeakage;
+    private String addedDate;
 
     public LeakageDTO() {
     }
 
-    public LeakageDTO(int id, int did, int sid, int iid, int received_leakage, int returned_leakage) {
+    public LeakageDTO(int id, int did, int sid, int iid, int receivedLeakage, int returnedLeakage, String addedDate) {
         this.id = id;
         this.did = did;
         this.sid = sid;
         this.iid = iid;
-        this.received_leakage = received_leakage;
-        this.returned_leakage = returned_leakage;
+        this.receivedLeakage = receivedLeakage;
+        this.returnedLeakage = returnedLeakage;
+        this.addedDate = addedDate;
     }
 
+   
+    
+
+    
     public int getId() {
         return id;
     }
@@ -31,6 +39,16 @@ public class LeakageDTO {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(String addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    
 
     public int getDid() {
         return did;
@@ -56,21 +74,23 @@ public class LeakageDTO {
         this.iid = iid;
     }
 
-    public int getReceived_leakage() {
-        return received_leakage;
+    public int getReceivedLeakage() {
+        return receivedLeakage;
     }
 
-    public void setReceived_leakage(int received_leakage) {
-        this.received_leakage = received_leakage;
+    public void setReceivedLeakage(int receivedLeakage) {
+        this.receivedLeakage = receivedLeakage;
     }
 
-    public int getReturned_leakage() {
-        return returned_leakage;
+    public int getReturnedLeakage() {
+        return returnedLeakage;
     }
 
-    public void setReturned_leakage(int returned_leakage) {
-        this.returned_leakage = returned_leakage;
+    public void setReturnedLeakage(int returnedLeakage) {
+        this.returnedLeakage = returnedLeakage;
     }
+
+   
     
     
 }   

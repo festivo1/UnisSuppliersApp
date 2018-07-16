@@ -8,7 +8,6 @@ package com.utsicom.webapp.controller;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -19,7 +18,7 @@ public class DefaultController {
     @RequestMapping(value="/default")
     public String defaultAfterLogin(HttpServletRequest request) {
         if (request.isUserInRole("USER")) {
-            return "redirect:/dipos/";
+            return "redirect:/user/";
         }
         System.out.println(request.isUserInRole("USER"));
         return "redirect:/admin/";

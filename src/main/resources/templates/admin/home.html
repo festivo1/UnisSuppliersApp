@@ -7,7 +7,7 @@
 
         <nav th:replace="admin_shared/header::navbar"></nav>
         <div class="container-fluid main-container">
-            <div th:replace="admin_shared/header::sidebar"></div>
+
             <div class="col-md-10 content">
 
                 <div class="row">
@@ -25,12 +25,12 @@
                         <table class="table table-hover table-striped table-bordered table-responsive table-list">
                             <thead>
                                 <tr class="filters">
-                                    <th><input type="text" class="form-control" placeholder="id" disabled></th>
+                                    <!--<th><input type="text" class="form-control" placeholder="id" disabled></th>-->
                                     <th><input type="text" class="form-control" placeholder="Name" disabled></th>
-                                    <th><input type="text" class="form-control" placeholder="Address" disabled></th>
+                                    <!--<th><input type="text" class="form-control" placeholder="Address" disabled></th>-->
                                     <th><input type="text" class="form-control" placeholder="ContactNUmber" disabled></th>
                                     <th><input type="text" class="form-control" placeholder="PanNumber" disabled></th>
-                                    <th><input type="text" class="form-control" placeholder="AddedDate" disabled></th>
+                                    <!--                                    <th><input type="text" class="form-control" placeholder="AddedDate" disabled></th>-->
                                     <th>Action</th>
                                     <th>AddRecords</th>
                                     <th><b>transactions</b></th>
@@ -42,40 +42,40 @@
 
 
                                 <tr th:each="dipo:${dipos.content}">
-                                    <td th:text="${dipoStat.count}"></td><!--it counts till the end -->
+                                    <!--<td th:text="${dipoStat.count}"></td>it counts till the end -->
                                     <td th:text="${dipo.name}"></td>
-                                    <td th:text="${dipo.address}"></td>
+                                    <!--                                    <td th:text="${dipo.address}"></td>-->
                                     <td th:text="${dipo.contactNumber}"></td>
                                     <td th:text="${dipo.panNumber}"></td>
-                                    <td th:text="${dipo.addedDate}"></td>
+                                    <!--                                    <td th:text="${dipo.addedDate}"></td>-->
                                     <td>
                                         <a th:href="@{/dipos/edit/__${dipo.id}__}" class="btn btn-default ebtn"><span class="glyphicon glyphicon-pencil"> </span>    </a>
 
                                         <a th:href="@{/dipos/delete/__${dipo.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-trash"> </span>  </a>
 
                                     </td>
-                                    
-                                     <td>
+
+                                    <td>
                                         <a th:href="@{/dipos/edit/__${dipo.id}__}" class="btn btn-default ebtn"><span class="glyphicon glyphicon-pencil"> </span>    </a>
 
                                         <a th:href="@{/dipos/delete/__${dipo.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-trash"> </span>  </a>
 
                                     </td>
-                                    
-                                    
-                                     <td>
+
+
+                                    <td>
                                         <a th:href="@{/dipos/edit/__${dipo.id}__}" class="btn btn-default ebtn"><span class="glyphicon glyphicon-pencil"> </span>    </a>
 
                                         <a th:href="@{/dipos/delete/__${dipo.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-trash"> </span>  </a>
 
                                     </td>
-                                     <td>
+                                    <td>
                                         <a th:href="@{/dipos/edit/__${dipo.id}__}" class="btn btn-default ebtn"><span class="glyphicon glyphicon-pencil"> </span>    </a>
 
                                         <a th:href="@{/dipos/delete/__${dipo.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-trash"> </span>  </a>
 
                                     </td>
-                                    
+
                                     <td> 
                                         <a th:href="@{/transaction/create/__${dipo.id}__}" type= "button" class="btn btn-sm btn-primary sTranBtn ">
                                             <span class="glyphicon glyphicon-plus"></span>
@@ -106,8 +106,8 @@
 
 
         <!-- create- Dipo->
-        -->        <div class="myDipoCreateForm">
-            <form th:action="@{/dipos/save}" name="dipoDTO" method="post">
+        -->  <div class="myDipoCreateForm">
+            <form th:action="@{/admin/dipos/save}" name="dipoDTO" method="post">
                 <div class="modal fade" id="dipoCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -155,7 +155,7 @@
         
         <!--edit Dipo-->
         <div class="myDipoEditForm">
-            <form th:action="@{/dipos/save}" name="dipo" method="post">
+            <form th:action="@{/admin/dipos/save}" name="dipo" method="post">
                 <div class="modal fade" id="dipoEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -225,7 +225,7 @@
 
         <!--create transactions-->
         <div class="myTransactionCreateForm">
-            <form th:action="@{/transaction/save}" name="transactionDTO" method="post">
+            <form th:action="@{/admin/transactions/save}" name="transactionDTO" method="post">
                 <div class="modal fade" id="transactionCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

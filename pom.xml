@@ -130,6 +130,16 @@
             <version>0.7.5</version>
             <type>jar</type>
         </dependency>
+        
+        <!--        In order to execute Thymeleaf in “LEGACYHTML5”
+        mode, we need to add an extra dependency in our pom.xml file → nekohtml.-->
+        
+        <!-- https://mvnrepository.com/artifact/net.sourceforge.nekohtml/nekohtml -->
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.21</version><!--$NO-MVN-MAN-VER$ -->
+        </dependency>
     </dependencies>
 
     <build>

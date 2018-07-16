@@ -1,0 +1,48 @@
+<div class="myAmountCreateForm" th:fragment="amountCreateForm">
+    <form th:action="@{/admin/depositedAmount/save}" name="amountDepositedDTO" method="post" onsubmit="return amtformValidatorCheck(this);">
+        <div class="modal fade" id="amountCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+
+                            <!--                                    <h2 id="dipoName" th:text="${dipo!= null ? dipo.name : 'NOT FOUND'}"/>-->
+                            <h1 class="dipoName"/>
+                            My Dipo Name
+                            </h1>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <!--<label for="did" class="col-form-label">DipoID</label>-->
+                            <input type="hidden" class="form-control" id="did" name="did"  />
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addedDate" class="col-form-label">Date(MM-dd-yyyy)</label>
+                            <input type="date" class="form-control" id="addedDate" name="addedDate"  />
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amountDeposited" class="col-form-label">Amount deposit</label>
+                            <input type="number" class="form-control" id="amountDeposited" name="amountDeposited" value="" required />
+                        </div>
+                        <div class="form-group">
+<!--                            <label for="decrementedAmount" class="col-form-label">Amount refilled</label>-->
+                            <input type="hidden" class="form-control" id="decrementedAmount" name="decrementedAmount" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input  type="submit" class="btn btn-primary" value="save"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

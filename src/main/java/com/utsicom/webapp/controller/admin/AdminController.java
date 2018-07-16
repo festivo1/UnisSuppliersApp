@@ -2,8 +2,14 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package com.utsicom.webapp.controller;
+package com.utsicom.webapp.controller.admin;
 
 import com.utsicom.webapp.dto.DipoDTO;
 import com.utsicom.webapp.model.Dipo;
@@ -18,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -35,8 +42,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author utsi
  */
 @Controller
-@RequestMapping(value = "/dipos")
-public class DipoController {
+//@PreAuthorize("hasAuthority('ADMIN_ROLE')")
+@RequestMapping(value = "/admin")
+public class AdminController {
 
     @Autowired
     private UserService userService;
@@ -58,6 +66,7 @@ public class DipoController {
         int id = user.getId();
         System.out.println(id);
         //model.addAttribute("user", userService.findByEmail(String email));
+        model.addAttribute("users", userService.getAll());
          model.addAttribute("dipos", dipoRepo.findAll(PageRequest.of(page, 9)));//(PageRequest(page, 5)));
 //        if (dipoService.getById(id).isPresent()) {
 //            model.addAttribute("dipo", dipoService.getById(id));
@@ -73,40 +82,48 @@ public class DipoController {
         return "admin/dipos/index";
     }
 
-    @RequestMapping(value = "/create")
-    public String create(Model model) {
-        model.addAttribute("user", userService.getAll());
-        model.addAttribute("dipos", dipoService.getAll());
+//    @RequestMapping(value = "/create")
+//    public String create(Model model) {
+//        model.addAttribute("user", userService.getAll());
+//        model.addAttribute("dipos", dipoService.getAll());
+//
+//        return "admin/home/create";
+//    }
 
-        return "admin/dipos/create";
-    }
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "dipos/save", method = RequestMethod.POST)
     public String save(DipoDTO dipoDTO) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByEmail(auth.getName());
+        System.out.println(userService.findByEmail(auth.getName()));
+        //model.addAttribute("userName", "Welcome " + user.getFirstName());
+        int id = user.getId();
         Dipo dipo = new Dipo();
         dipo.setId(dipoDTO.getId());
+        dipo.setUser(new User(dipoDTO.getId()));
         dipo.setName(dipoDTO.getName());
         dipo.setAddress(dipoDTO.getAddress());
         dipo.setContactNumber(dipoDTO.getContactNumber());
         dipo.setPanNumber(dipoDTO.getPanNumber());
         dipo.setAddedDate(new Date());
+        //if(dipo.getId())
+        //dipo.setUser(id);
         //dipo.setUser(new User(dipoDTO.getUsername()));
         //User user = new User();
         //user.setUsername(dipoDTO.getUsername());
         //user.setPassword(dipoDTO.getPassword());
         //user.setId(dipoDTO.getUid());
         dipoService.saveOrUpdate(dipo);
-        return "redirect:/dipos";
+        return "redirect:/admin/";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "dipos/delete/{id}", method = RequestMethod.GET)
     //@DeleteMapping("/delete/{id}")
     public String delete(@PathVariable(required = true, name = "id") int id) {
         dipoService.delete(id);
-        return "redirect:/dipos";
+        return "redirect:/admin/";
     }
 
-    @GetMapping(value = "/edit/{id}")
+    @GetMapping(value = "/dipos/edit/{id}")
     @ResponseBody
     public Optional<Dipo> findOne(@PathVariable(required = true, name = "id") int id, Model model) {
 

@@ -97,16 +97,17 @@
                 <div class="row">
                     <div class="panel panel-default filterable">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Dipos</h3>
+                            <h2 id ="dipoName" class="panel-title" th:text="${dipoName}" align="center"></h2>
+                            <h5 id="total" align="left">Total Transacted Amount:<span id="getAmount"> </span></h5>
                             <div class="pull-right">
                                 <!--                                                                                                    th:href="@{/dipos/create}"-->
-                                <a  type= "button" class="btn btn-xs btn-primary  sbtn">
+<!--                                <a  type= "button" class="btn btn-xs btn-primary  sbtn">
                                     <span class="glyphicon glyphicon-plus"/>
-                                </a>
+                                </a>-->
                                 <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
                             </div>
                         </div>
-                        <table class="table table-condensed table-hover table-striped table-bordered table-responsive table-list">
+                        <table id="table1" class="table table-condensed table-hover table-striped table-bordered table-responsive table-list">
                             <thead>
                                 <tr class="filters">
                                     <th><input type="text" class="form-control" placeholder="addedDate" disabled></th>
@@ -115,9 +116,10 @@
                                     <!--                        <th><input type="text" class="form-control" placeholder="dipo" disabled></th>-->
                                     <th><input type="text" class="form-control" placeholder="item" disabled></th>
                                     <th><input type="text" class="form-control" placeholder="refilledNumber " disabled></th>
-                                    <th><input type="text" class="form-control" placeholder="soldNumber" disabled></th>
                                     <th><input type="text" class="form-control" placeholder="refilledRate" disabled></th>
-                                    <th><input type="text" class="form-control" placeholder="emptyRate" disabled></th><!--
+                                    <th><input type="text" class="form-control" placeholder="soldNumber" disabled></th>
+
+                                    <th><input type="text" class="form-control" placeholder="FullRate" disabled></th><!--
                                     -->                                    <th><input type="text" class="form-control" placeholder="totalAmount" disabled></th><!--
                                                                         <th><input type="text" class="form-control" placeholder="refilledAmt" disabled></th>
                                                                         <th><input type="text" class="form-control" placeholder="leakageReceived" disabled></th>
@@ -129,16 +131,18 @@
                             <tbody>
 
                                 <tr th:each="transaction:${transactions}">
-                                    <td th:text="${transaction.addedDate}"></td>
-                                    <td th:text="${transaction.item.name}">${transaction.item.name}</td>
-                                    <td th:text="${transaction.transactedNumber}">${transaction.transactedNumber}</td>
-                                    <td th:text="${transaction.soldNumber}">${transaction.soldNumber}</td>
+                                    <td class="sum" th:text="${transaction.addedDate}"></td>
+                                    <td  th:text="${transaction.item.name}">${transaction.item.name}</td>
+                                    <td class="sum"  th:text="${transaction.transactedNumber}">${transaction.transactedNumber}</td>
+
                                     <td th:text="${transaction.refilledRate}">${transaction.refilledRate}</td>
+                                    <td th:text="${transaction.soldNumber}">${transaction.soldNumber}</td>
                                     <td th:text="${transaction.emptyRate}">${transaction.emptyRate}</td>
                                     <!--                                     <td th:text="${transaction.emptyRate}*${transaction.transactedNumber}+${transaction.soldNumber}*${transaction.emptyRate}">${total amount}</td>-->
                                     <td th:text="${transaction.transactedNumber} * ${transaction.refilledRate}+${transaction.soldNumber}*${transaction.emptyRate}"></td>
                                 </tr>
 
+                                
                             </tbody>
                         </table>
                         <hr/>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="admin_shared/headerfiles::headerfiles">
+    </head>
+    <body>
+
+        <nav th:replace="admin_shared/header::navbar"></nav>
+        <div class="container-fluid main-container">
+            <div th:replace="admin_shared/header::sidebar"></div>
+            <div class="col-md-10 content">
+                <div class="row">
+                    <div class="panel panel-default filterable">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" th:text="${userName}">user </h3>
+                            
+                            <div class="pull-right">
+                                <!--                                                                                                    th:href="@{/dipos/create}"-->
+                                <a  type= "button" class="btn btn-xs btn-primary  sbtn">
+                                    <span class="glyphicon glyphicon-plus"/>
+                                </a>
+                                <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                            </div>
+                        </div>
+                        <table id="table1" class="table table-condensed table-hover table-striped table-bordered table-responsive table-list">
+                              <thead>
+                                <tr class="filters">
+                                    <!--<th><input type="text" class="form-control" placeholder="id" disabled></th>-->
+                                    <th><input type="text" class="form-control" placeholder="name" disabled></th>
+                                    <th><input type="text" class="form-control" placeholder="supplier" disabled></th>
+                                    <th><input type="text" class="form-control" placeholder="item" disabled></th>
+                                    <th><input type="text" class="form-control" placeholder="receivedLeakage" disabled></th>
+                                     <th><input type="text" class="form-control" placeholder="returnedLeakage" disabled></th>
+                                     <th><input type="text" class="form-control" placeholder="remaining" disabled></th>
+                                    <th><input type="text" class="form-control" placeholder="AddedDate" disabled></th>
+<!--                                    <th>Action</th>
+                                    <th>AddRecords</th>
+                                    <th><b>transactions</b></th>-->
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <tr th:each="leakage:${leakages}">
+                                    <!--<td th:text="${dipoStat.count}"></td>it counts till the end -->
+                                    <td th:text="${leakage.dipo.name}"></td>
+                                    <!--                                    <td th:text="${dipo.address}"></td>-->
+                                    <td th:text="${leakage.supplier.name}"></td>
+                                    <td th:text="${leakage.item.name}"></td>
+                                    <td th:text="${leakage.receivedLeakage}"></td>
+                                    <td th:text="${leakage.returnedLeakage}"></td>
+                                    <td th:text="-${leakage.returnedLeakage}+${leakage.receivedLeakage}"></td>
+                                    <td th:text="${leakage.addedDate}"></td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <hr/>
+                        <!--                        <ul class="nav nav-pills">
+                                                    <li class="nav-item" th:each="i: ${#numbers.sequence(0,dipos.totalPages-1)}">
+                                                        <a th:href="@{/dipos/(pages=${i})}"th:text="${i}" class="nav-link"
+                                                           th:classappend="${currentPage}==${i}?'active':''"></a>
+                                                    </li>
+                                                </ul>-->
+
+                    </div>
+                </div>
+            </div>
+            <footer th:replace="admin_shared/footer::footer"></footer>
+            <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+            <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+        </div>
+
+
+    </body>
+</html>

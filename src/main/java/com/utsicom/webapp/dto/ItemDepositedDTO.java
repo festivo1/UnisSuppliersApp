@@ -5,23 +5,45 @@
  */
 package com.utsicom.webapp.dto;
 
+
 /**
  *
  * @author utsi
  */
 public class ItemDepositedDTO {
-    private int id, did, sid, iid, diposited_number;
+    private int id, did, sid, iid, refilledNumber;
+    private Integer depositedNumber;
+    private String addedDate;
 
     public ItemDepositedDTO() {
     }
 
-    public ItemDepositedDTO(int id, int did, int sid, int iid, int diposited_number) {
+    public ItemDepositedDTO(int id, int did, int sid, int iid, int refilledNumber, Integer depositedNumber, String addedDate) {
         this.id = id;
         this.did = did;
         this.sid = sid;
         this.iid = iid;
-        this.diposited_number = diposited_number;
+        this.refilledNumber = refilledNumber;
+        this.depositedNumber = depositedNumber;
+        this.addedDate = addedDate;
     }
+
+    public Integer getDepositedNumber() {
+        return depositedNumber;
+    }
+
+    public void setDepositedNumber(Integer depositedNumber) {
+        this.depositedNumber = depositedNumber;
+    }
+    public int getRefilledNumber() {
+        return refilledNumber;
+    }
+
+    public void setRefilledNumber(int refilledNumber) {
+        this.refilledNumber = refilledNumber;
+    }
+
+    
 
     public int getId() {
         return id;
@@ -33,6 +55,14 @@ public class ItemDepositedDTO {
 
     public int getDid() {
         return did;
+    }
+
+    public String getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(String addedDate) {
+        this.addedDate = addedDate;
     }
 
     public void setDid(int did) {
@@ -55,16 +85,4 @@ public class ItemDepositedDTO {
         this.iid = iid;
     }
 
-    public int getDiposited_number() {
-        return diposited_number;
-    }
-
-    public void setDiposited_number(int diposited_number) {
-        this.diposited_number = diposited_number;
-    }
-
-   
-    
-    
-    
 }

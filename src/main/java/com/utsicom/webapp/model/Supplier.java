@@ -51,12 +51,12 @@ public class Supplier implements Serializable {
     @Size(max = 20)
     @Column(name = "pan_number")
     private String panNumber;
-    @OneToMany(mappedBy = "supplier")
-    private List<ItemDeposited> itemDepositedList;
 //    @OneToMany(mappedBy = "supplier")
-//    private List<Transaction> transactionList;
-    @OneToMany(mappedBy = "supplier")
-    private List<Leakage> leakageList;
+//    private List<ItemDeposited> itemDepositedList;
+////    @OneToMany(mappedBy = "supplier")
+////    private List<Transaction> transactionList;
+//    @OneToMany(mappedBy = "supplier")
+//    private List<Leakage> leakageList;
 
     public Supplier() {
     }
@@ -107,32 +107,32 @@ public class Supplier implements Serializable {
 
  
 
-    @XmlTransient
-    public List<ItemDeposited> getItemDepositedList() {
-        return itemDepositedList;
-    }
-
-    public void setItemDepositedList(List<ItemDeposited> itemDepositedList) {
-        this.itemDepositedList = itemDepositedList;
-    }
+//    @XmlTransient
+//    public List<ItemDeposited> getItemDepositedList() {
+//        return itemDepositedList;
+//    }
+//
+//    public void setItemDepositedList(List<ItemDeposited> itemDepositedList) {
+//        this.itemDepositedList = itemDepositedList;
+//    }
+////
+////    @XmlTransient
+////    public List<Transaction> getTransactionList() {
+////        return transactionList;
+////    }
+////
+////    public void setTransactionList(List<Transaction> transactionList) {
+////        this.transactionList = transactionList;
+////    }
 //
 //    @XmlTransient
-//    public List<Transaction> getTransactionList() {
-//        return transactionList;
+//    public List<Leakage> getLeakageList() {
+//        return leakageList;
 //    }
 //
-//    public void setTransactionList(List<Transaction> transactionList) {
-//        this.transactionList = transactionList;
+//    public void setLeakageList(List<Leakage> leakageList) {
+//        this.leakageList = leakageList;
 //    }
-
-    @XmlTransient
-    public List<Leakage> getLeakageList() {
-        return leakageList;
-    }
-
-    public void setLeakageList(List<Leakage> leakageList) {
-        this.leakageList = leakageList;
-    }
 
    
     

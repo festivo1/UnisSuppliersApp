@@ -1,0 +1,84 @@
+<div class="myTransactionCreateForm" th:fragment="transactionCreateForm">
+    <form id="transactionForm" th:action="@{/admin/transactions/save}" name="transactionDTO" method="post" onsubmit=" return formValidatorCheck(this);">
+                <div class="modal fade" id="transactionCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+
+                                    <!--                                    <h2 id="dipoName" th:text="${dipo!= null ? dipo.name : 'NOT FOUND'}"/>-->
+                                    <h1 class="dipoName"/>
+                                    My Dipo Name
+                                    </h1>
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <!--                                <div class="form-group">
+                                                                    <label for="id" class="col-form-label">Id</label>
+                                                                    <input type="number" class="form-control" id="id" name="id" value=""/>
+                                                                </div>-->
+                                <!--                                <div class="form-group">
+                                                                    <label for="did" class="col-form-label">Dipo Name</label>
+                                                                   <select class="form-control" id="did" name="did"  required>
+                                                                        <option th:each="dipo : ${dipos}" th:value="${dipo.id}" th:text="${dipo.name}"></option>
+                                                                    </select>
+                                                                </div>-->
+                                <div class="form-group">
+                                    <!--<label for="did" class="col-form-label">DipoID</label>-->
+                                    <input type="hidden" class="form-control" id="did" name="did"  />
+
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="addedDate" class="col-form-label">Date(MM-dd-yyyy)</label>
+                                    <input type="date" class="form-control" id="addedDate" name="addedDate"  />
+                                    <!--<p th:text="${#temporals.format(localDate, 'MM-dd-yyyy')}"></p>-->
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="sid" class="col-form-label">supplier</label>
+                                    <select class="form-control" id="sid" name="sid"  required>
+                                        <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="iid" class="col-form-label">Items</label>
+                                    <select class="form-control" id="iid" name="iid"  required>
+                                        <option th:each="item : ${items}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="transactedNumber" class="col-form-label">refilled Number</label>
+                                    <input type="number" class="form-control" id="transactedNumber" name="transactedNumber" value=""  />
+                                </div>
+                                <div class="form-group">
+                                    <label for="refilledRate" class="col-form-label">RefilledRate</label>
+                                    <input type="number" class="form-control" id="refilledRate" name="refilledRate" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="soldNumber" class="col-form-label">soldNumber</label>
+                                    <input type="number" class="form-control" id="soldNumber" name="soldNumber" />
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="emptyRate" class="col-form-label">FullRate</label>
+                                    <input type="number" class="form-control" id="fullRate" name="emptyRate"  />
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="save"/>
+                                <input type="reset" class="btn btn-primary" value="reset"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>

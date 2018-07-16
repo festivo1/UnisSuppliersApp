@@ -6,6 +6,7 @@
 package com.utsicom.webapp.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -21,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -48,8 +50,8 @@ public class Transaction implements Serializable {
     private Integer refilledRate;
     @Column(name = "empty_rate")
     private Integer emptyRate;
-    @Column(name = "added_date", insertable = false)
-    @Temporal(TemporalType.DATE)
+    @Column(name = "added_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date addedDate;
     @JoinColumn(name = "dipo_id", referencedColumnName = "id")
     @ManyToOne
