@@ -8,11 +8,11 @@ package com.utsicom.webapp.service.impl;
 import com.utsicom.webapp.service.GenericService;
 import java.util.List;
 import java.util.Optional;
-import static javafx.scene.input.KeyCode.T;
 
 /**
  *
  * @author utsi
+ * @param <T>
  */
 public abstract class GenericServiceImpl<T> implements GenericService<T>{
 
