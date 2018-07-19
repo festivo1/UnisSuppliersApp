@@ -22,9 +22,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Controller
+@EnableAutoConfiguration
 public class LoginController {
 
     @Autowired
